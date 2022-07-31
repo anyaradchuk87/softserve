@@ -44,6 +44,15 @@ def search_student_gbn(group, student):
     return valid
 
 
+def search_student_gbn1(group, student_gbn):
+    valid = True
+    for i in range(len(group)):
+        if group[i][0] == student_gbn:
+            valid = False
+
+    return valid
+
+
 def search_student_last_name(group, last_name):
     valid = True
     for i in range(len(group)):
@@ -97,7 +106,6 @@ def check_number(parametr):
     return valid
 
 
-
 group = []
 len_group = 0
 stop_program = True
@@ -107,7 +115,11 @@ while stop_program:
         action = int(input('Enter number from 1 to 3: '))
         if action == 1:
             print('Add student:')
-            student = (int(input('Enter gbn: ')), input('Enter last name: '), input('Enter first name: '), float(input('Enter grade level: ')))
+            student_gbn = int(input('Enter gbn: '))
+            student_ln = input('Enter last name: ')
+            student_fn = input('Enter first name: ')
+            student_gl = float(input('Enter grade level: '))
+            student = (student_gbn, student_ln, student_fn, student_gl)
             add_student(group, student)
             len_group = 1
         elif action == 2:
@@ -121,10 +133,16 @@ while stop_program:
         action = int(input('Enter number from 1 to 6: '))
         if action == 1:
             print('Add student:')
-            student = (int(input('Enter gbn: ')), input('Enter last name: '), input('Enter first name: '),
-                       float(input('Enter grade level: ')))
-            print(student)
-            add_student(group, student)
+            student_gbn = int(input('Enter gbn: '))
+            if search_student_gbn1(group, student_gbn):
+                student_ln = input('Enter last name: ')
+                student_fn = input('Enter first name: ')
+                student_gl = float(input('Enter grade level: '))
+                student = (student_gbn, student_ln, student_fn, student_gl)
+                print(student)
+                add_student(group, student)
+            else:
+                print('Couldn\'t add student. Enter another grade book number')
         elif action == 2:
             print_group(group)
         elif action == 3:
@@ -143,7 +161,6 @@ student1 = (103, 'Shevchenko', 'Taras', 4.7)
 student2 = (104, 'Ukrainka', 'Lesia', 4.2)
 student3 = (105, 'Franko', 'Ivan', 3.8)
 
-show_options()
 # add_student(group, student1)
 # add_student(group, student2)
 # add_student(group, student3)
