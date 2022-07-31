@@ -5,7 +5,7 @@ def add_student(group, student):
     if valid or len(group) == 0:
         group.append(student)
     else:
-        print('Couldn\'t add student. Enter another grade book number')
+        print('Couldn\'t add student. Enter another grade book number!!!!!!!!!')
 
 
 def print_group(group):
@@ -140,7 +140,7 @@ while stop_program:
                 student_gl = float(input('Enter grade level: '))
                 student = (student_gbn, student_ln, student_fn, student_gl)
                 print(student)
-                add_student(group, student)
+                group.append(student)
             else:
                 print('Couldn\'t add student. Enter another grade book number')
         elif action == 2:
