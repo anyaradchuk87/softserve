@@ -28,11 +28,6 @@ def update_student(group, grade_book_number, grade_level):
             group[i] = (group[i][0], group[i][1], group[i][2], grade_level)
 
 
-def delete_student(group, position):
-    if position is not None:
-        group.pop(position)
-
-
 def search_student_gbn(group, student):
     valid = True
 
@@ -80,22 +75,27 @@ def search_student_grade_level(group, grade_level):
     return valid
 
 
-def search_student_delete_update(group, student):
+def search_student_delete_update(group, student_gbn):
     position = None
     for i in range(len(group)):
-        if group[i][0] == student[i][0]:
+        if group[i][0] == student_gbn:
             position = i
+            break
 
     return position
 
 
 def show_options():
-    print(f'1. Create\t\t2. Find\t\t3. Update')
-    print(f'4. Delete\t\t5. Show\t\t6. Exit')
+    print()
+    print(f'1. Create\t\t2. Find student\t\t3. Update')
+    print(f'4. Delete\t\t5. Show group\t\t6. Exit')
+    print()
 
 
 def show_options_create():
-    print(f'1. Create\t\t2. Show\t\t3. Exit')
+    print()
+    print(f'1. Create\t\t2. Show group\t\t3. Exit')
+    print()
 
 
 def check_number(parametr):
@@ -114,13 +114,14 @@ while stop_program:
         show_options_create()
         action = int(input('Enter number from 1 to 3: '))
         if action == 1:
-            print('Add student:')
-            student_gbn = int(input('Enter gbn: '))
+            print('Add student')
+            student_gbn = int(input('Enter grade book number: '))
             student_ln = input('Enter last name: ')
             student_fn = input('Enter first name: ')
             student_gl = float(input('Enter grade level: '))
             student = (student_gbn, student_ln, student_fn, student_gl)
             add_student(group, student)
+            print(f'Student \'{student_ln} {student_fn}\' is added successfully')
             len_group = 1
         elif action == 2:
             print('The group is empty')
@@ -132,44 +133,44 @@ while stop_program:
         show_options()
         action = int(input('Enter number from 1 to 6: '))
         if action == 1:
-            print('Add student:')
-            student_gbn = int(input('Enter gbn: '))
+            print('Add student')
+            student_gbn = int(input('Enter grade book number: '))
             if search_student_gbn1(group, student_gbn):
                 student_ln = input('Enter last name: ')
                 student_fn = input('Enter first name: ')
                 student_gl = float(input('Enter grade level: '))
                 student = (student_gbn, student_ln, student_fn, student_gl)
                 group.append(student)
-                print(f'Student {student_ln} {student_fn} add succesful')
+                print(f'Student \'{student_ln} {student_fn}\' added successfully')
             else:
                 print('Couldn\'t add student. Enter another grade book number')
         elif action == 2:
-            print_group(group)
+            grade_bn = int(input('Enter grade book number: '))
+            position = search_student_delete_update(group, grade_bn)
+            print(f'Student with grade book number {grade_bn} is \'{group[position][1]} {group[position][2]}\'')
         elif action == 3:
-            pass
+            student_gbn = int(input('Enter grade book number: '))
+            position = search_student_delete_update(group, student_gbn)
+            new_grade_level = float(input('Enter new average level: '))
+            print(f'Ready to update student \'{group[position][1]} {group[position][2]}\'?')
+            answer = input('Y/N: ').upper()
+            if answer == 'Y':
+                group[position] = (group[position][0], group[position][1], group[position][2], new_grade_level)
+                print(f'Student \'{group[position][1]} {group[position][2]}\' was successfully updated')
+            else:
+                print(f'Student {group[position][1]} {group[position][2]} isn\'t updated')
         elif action == 4:
-            pass
+            student_gbn = int(input('Enter grade book number: '))
+            position = search_student_delete_update(group, student_gbn)
+            print(f'Ready to delete student \'{group[position][1]} {group[position][2]}\'?')
+            answer = input('Y/N: ').upper()
+            if answer == 'Y':
+                del_student = group.pop(position)
+                print(f'Student \'{del_student[1]} {del_student[2]}\' was successfully removed')
+            else:
+                print(f'Student {group[position][1]} {group[position][2]} isn\'t removed')
         elif action == 5:
             print_group(group)
         elif action == 6:
             print('Exit')
             stop_program = False
-
-group = [(101, 'Stus', 'Vasyl', 4.8), (102, 'Vishnia', 'Ostap', 4.1)]
-
-student1 = (103, 'Shevchenko', 'Taras', 4.7)
-student2 = (104, 'Ukrainka', 'Lesia', 4.2)
-student3 = (105, 'Franko', 'Ivan', 3.8)
-
-# add_student(group, student1)
-# add_student(group, student2)
-# add_student(group, student3)
-#
-# update_student(group, 105, 4.0)
-# print_group(group)
-# print('_' * 50)
-# delete_student(group, 103)
-# print_group(group)
-# print('_' * 50)
-# delete_student(group, 105)
-# print_group(group)
