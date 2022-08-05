@@ -131,7 +131,7 @@ while stop_program:
             stop_program = False
     else:
         show_options()
-        action = int(input('Enter number from 1 to 6: '))
+        action = int(input('Enter a number from 1 to 6: '))
         if action == 1:
             print('Add student')
             student_gbn = int(input('Enter grade book number: '))

@@ -59,7 +59,6 @@ class TrafficLight:
         self.stop = False
 
 
-
 tr_light = TrafficLight()
 
 tr_light.do_lights()
