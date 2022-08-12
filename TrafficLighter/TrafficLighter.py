@@ -1,6 +1,9 @@
-class TrafficLights:
+import  time
 
-    def __init__(self, green, yellow, red):
+
+class TrafficLighter:
+
+    def __init__(self, green=False, yellow=False, red=False):
         self.green = green
         self.yellow = yellow
         self.red = red
@@ -36,6 +39,7 @@ class TrafficLights:
               '*' if self.yellow else '-',
               '*' if self.red else '-')
 
-traffic_light = TrafficLights(True, False, False)
+
+traffic_light = TrafficLighter(True, False, False)
 traffic_light.run(True)
 traffic_light.run(False)

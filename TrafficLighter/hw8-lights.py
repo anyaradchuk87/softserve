@@ -13,22 +13,22 @@ class TrafficLight:
         self.yellow = yellow
         self.green = green
 
-    def on_red(self):
+    def on_red(self): #model
         self.red = True
         self.yellow = False
         self.green = False
 
-    def on_yellow(self):
+    def on_yellow(self): #model
         self.red = False
         self.yellow = True
         self.green = False
 
-    def on_green(self):
+    def on_green(self): #model
         self.red = False
         self.yellow = False
         self.green = True
 
-    def view_lights(self):
+    def view_lights(self): #viewer
         if self.red:
             print('* - -')
         elif self.yellow:
@@ -38,7 +38,7 @@ class TrafficLight:
         else:
             print('- - -')
 
-    def do_lights(self):
+    def do_lights(self): #controller
         self.view_lights()
         while self.step < 3:
             if self.stop:

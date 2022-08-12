@@ -35,7 +35,7 @@ class Fraction:
         if self.numerator < self.denominator:
             return 0
 
-        return int(self.numerator / self.denominator)
+        return self.numerator // self.denominator
 
     def __eq__(self, other):
         return (self.numerator / self.denominator) == (other.numerator / other.denominator)
