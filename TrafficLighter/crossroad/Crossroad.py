@@ -1,7 +1,18 @@
-from Lighter1 import MainLighter, SecondLighter
+from Lighter import Lighter
+from Mainlighter import MainLighter
+from Secondlighter import SecondLighter
 
 
 class CrossRoad:
+
+    @staticmethod
+    def show_header():
+        print('\tMain \t Second \t Duplic \t Second')
+
+    @staticmethod
+    def show_lighter(lighter):
+        print(lighter, end='\t')
+
     def __init__(self):
         self.road = []
         self.current_position = 0
@@ -25,10 +36,17 @@ class CrossRoad:
         return current_lighter
 
     def run(self):
-        while self.step < 3:
+        CrossRoad.show_header()
+        while self.step < 7:
             if self.start:
                 for l in new_road:
-                    l.do_step()
+                    if Lighter.state < 4:
+                        l.do_step()
+                        CrossRoad.show_lighter(l)
+                        Lighter.state += 1
+                    else:
+                        Lighter.state = 0
+                print('------------')
             self.step += 1
         self.start = False
 
