@@ -13,3 +13,7 @@ def get_numbers2(source, position=0):
 
 stroka = 'hdf736239jnfbvsk'
 get_numbers2(stroka)
+print()
+
+LIGHTS = [(True, False, False), (False, True, False), (False, False, True)]
+print(LIGHTS[0][2])
